@@ -48,6 +48,30 @@ WHERE Distribution_ID = 3;
 
 # Add 2 points to the score of each student on an assignment
 
+SELECT * FROM Scores WHERE Assignment_ID = 14;
+UPDATE Scores
+SET Points = Points + 2
+WHERE Assignment_ID = 14;
+SELECT * FROM Scores WHERE Assignment_ID=14;
+
+
+# Add 2 points just to those students whose last name contains a ‘Q’
+
+SELECT * FROM Scores WHERE Assignment_ID = 5;
+SELECT * FROM Students WHERE Student_ID= '@02712345';
+
+UPDATE Scores ST
+JOIN Students S ON  S.Student_ID = ST.Student_ID 
+SET Points = Points + 2 
+WHERE Assignment_ID = 5
+AND S.L_Name LIKE '%Q%';
+SELECT * FROM Scores WHERE Assignment_ID=5;
+
+# Compute the grade for a student
+
+
+
+
 
 
 

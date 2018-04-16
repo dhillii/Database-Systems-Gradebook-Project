@@ -26,8 +26,9 @@ INSERT INTO Courses VALUES (1,'Computer Science',1,'Intro to Computer Science','
 
 INSERT INTO Students VALUES ('@02790088','David','Hill','Computer Science'), ('@02750023','William','Bell','Computer Science'), ('@02785300','Ellis','Crawford','Computer Science'), ('@02710245','Jane','Doe','Mech. Engineering');		#Setting Students
 
-INSERT INTO Distribution VALUES (1,1,'Test',50),(2,1,'Homework',20),(3,1,'Project',30),(4,2,'Test',25),(5,2,'Homework',25),(6,2,'Project',25),(7,2,'Labs',25),(8,3,'Participation',10),(9,3,'Tests',60),(10,3,'Homework',20),(11,3,'Quiz',10);		#Setting distributions
+INSERT INTO Students VALUES ('@02712345','James','Quinn','Chem. Engineering');
 
+INSERT INTO Distribution VALUES (1,1,'Test',50),(2,1,'Homework',20),(3,1,'Project',30),(4,2,'Test',25),(5,2,'Homework',25),(6,2,'Project',25),(7,2,'Labs',25),(8,3,'Participation',10),(9,3,'Tests',60),(10,3,'Homework',20),(11,3,'Quiz',10);		#Setting distributions
 
 INSERT INTO Assignments (Distribution_ID, Instance, Points_Possible) VALUES (1,1,100),(1,2,100),(2,1,100),(2,2,100),(2,3,100), (2,4,100), (2,5,100), (3, 1, 100); 		#Assignments for class 1
 
@@ -38,8 +39,11 @@ INSERT INTO Assignments (Distribution_ID, Instance, Points_Possible) VALUES (8, 
 
 INSERT INTO Enroll VALUES ('@02790088',1),('@02790088',3),('@02750023',3), ('@02785300', 2), ('@02785300', 1), ('@02710245', 1), ('@02710245', 2), ('@02710245', 3);					#Enrolling students in classes
 
+INSERT INTO Enroll VALUES ('@02712345', 1);
 
 INSERT INTO Scores VALUES ('@02790088', 1, 95), ('@02790088', 2, 100), ('@02790088', 3, 80), ('@02790088', 4, 90), ('@02790088', 5, 75), ('@02790088', 6, 100), ('@02790088', 7, 89), ('@02790088', 8, 96);			#David Hill Class 1 Scores
+
+INSERT INTO Scores VALUES ('@02712345', 1, 85), ('@02712345', 2, 50), ('@02712345', 3, 70), ('@02712345', 4, 60), ('@02712345', 5, 70), ('@02712345', 6, 80), ('@02712345', 7, 85), ('@02712345', 8, 90);			#James Quinn Scores for Class 1
 
 INSERT INTO Scores VALUES ('@02790088', 19, 9), ('@02790088', 20, 76), ('@02790088', 21, 90), ('@02790088', 22, 5), ('@02790088', 23, 5), ('@02790088', 24, 4), ('@02790088', 25, 3), ('@02790088', 26, 9), ('@02790088', 27, 10); 		#David Hill Class 3 Scores
 
