@@ -48,6 +48,45 @@ WHERE Distribution_ID = 3;
 
 # Add 2 points to the score of each student on an assignment
 
+SELECT * FROM Scores WHERE Assignment_ID = 14;
+UPDATE Scores
+SET Points = Points + 2
+WHERE Assignment_ID = 14;
+SELECT * FROM Scores WHERE Assignment_ID=14;
+
+
+# Add 2 points just to those students whose last name contains a ‘Q’
+
+UPDATE Scores ST
+JOIN Students S ON  S.Student_ID = ST.Student_ID 
+SET Points = Points + 2 
+WHERE Assignment_ID = 5
+AND S.L_Name LIKE '%Q%';
+SELECT * FROM Scores WHERE Assignment_ID=5;
+
+# Compute the grade for a student
+
+SELECT count(*) FROM Scores S LEFT JOIN Assignments A ON S.Assignment_ID = A.Assignment_ID JOIN Distribution D ON D.Distribution_ID = A.Distribution_ID WHERE Course_ID=3 AND Student_ID= '@02790088'
+GROUP BY D.Distribution_ID;
+SELECT * FROM Scores S LEFT 
+JOIN Assignments A ON S.Assignment_ID = A.Assignment_ID 
+JOIN Distribution D ON D.Distribution_ID = A.Distribution_ID 
+WHERE course_ID = 3 AND Student_ID = '@02790088';
+
+SELECT SUM((S.Points/A.Points_Possible) * (D.Percent/C.Counter)) AS Grade
+FROM Scores S
+LEFT JOIN Assignments A ON S.Assignment_ID = A.Assignment_ID 
+JOIN Distribution D ON D.Distribution_ID = A.Distribution_ID 
+JOIN (SELECT D.Distribution_ID, count(*) AS counter FROM Scores S
+LEFT JOIN Assignments A ON S.Assignment_ID = A.Assignment_ID 
+JOIN Distribution D ON D.Distribution_ID = A.Distribution_ID 
+WHERE Course_ID=3 AND Student_ID='@02790088'  GROUP BY D.Distribution_ID) 
+C ON C.Distribution_ID= D.Distribution_ID 
+WHERE Course_ID=3 
+AND Student_ID='@02790088';
+
+
+
 
 
 
