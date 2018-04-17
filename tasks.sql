@@ -86,6 +86,32 @@ WHERE Course_ID=3
 AND Student_ID='@02790088';
 
 
+# Compute the grade for a student, where the lowest score for a given category is dropped.
+
+SELECT SUM(
+    IF(
+        (D.Category='Tests' AND S.Points/A.Points_Possible<=lw.low), 
+        D.Percent/C.Counter, 
+        (S.Points/A.Points_Possible) * (D.Percent/C.Counter)
+    )
+) AS Grade
+FROM Scores S
+LEFT JOIN Assignments A ON S.Assignment_ID = A.Assignment_ID 
+JOIN Distribution D ON D.Distribution_ID = A.Distribution_ID 
+JOIN (SELECT D.Distribution_ID, count(*) AS counter FROM Scores S 
+LEFT JOIN Assignments A ON S.Assignment_ID = A.Assignment_ID 
+JOIN Distribution D ON D.Distribution_ID = A.Distribution_ID 
+WHERE Course_ID=3 and Student_ID='@02790088' GROUP BY D.Distribution_ID) 
+C ON C.Distribution_ID= D.Distribution_ID 
+JOIN (SELECT D.Distribution_ID, MIN(S.Points/A.Points_Possible) AS low FROM Scores S 
+LEFT JOIN Assignments A ON S.Assignment_ID = A.Assignment_ID 
+JOIN Distribution D ON D.Distribution_ID = A.Distribution_ID 
+WHERE Course_ID=3 and Student_ID='@02790088'  GROUP BY  D.Distribution_ID) 
+lw on lw.Distribution_ID= D.Distribution_ID 
+WHERE Course_ID=3 
+AND Student_ID='@02790088';
+
+
 
 
 
